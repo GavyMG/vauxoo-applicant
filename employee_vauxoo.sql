@@ -15,7 +15,11 @@ CREATE TABLE employee (
 	first_name varchar(50) NOT NULL,
 	last_name varchar(50) NOT NULL,
 	id_department serial NOT NULL,
+	id_boss serial NOT NULL,
 	FOREIGN KEY (id_department) REFERENCES employee_department
+	ON DELETE CASCADE
+	ON UPDATE CASCADE,
+	FOREIGN KEY (id_boss) REFERENCES employee
 	ON DELETE CASCADE
 	ON UPDATE CASCADE	
 );
@@ -59,19 +63,19 @@ VALUES ('Finance', 'A marketing department promotes your business and drives sal
 INSERT INTO employee_department (name, description)
 VALUES ('Customer Service', 'the department helps to strengthen the brand, build loyalty, and ensure all customer issues are appropriately handled.');
 
--- --INSERT employees
+-- --INSERT employee
 
-INSERT INTO employee (first_name, last_name, id_department)
-VALUES ('Edson', 'Ruiz', '1');
+INSERT INTO employee (first_name, last_name, id_department, id_boss)
+VALUES ('Edson', 'Ruiz', '1', '1');
 
-INSERT INTO employee (first_name, last_name, id_department)
-VALUES ('Gabriela', 'Mogollon', '2');
+INSERT INTO employee (first_name, last_name, id_department, id_boss)
+VALUES ('Gabriela', 'Mogollon', '2', '1');
 
-INSERT INTO employee (first_name, last_name, id_department)
-VALUES ('Miriam', 'Gamez', '6');
+INSERT INTO employee (first_name, last_name, id_department, id_boss)
+VALUES ('Miriam', 'Gamez', '6', '1');
 
-INSERT INTO employee (first_name, last_name, id_department)
-VALUES ('Daniela', 'Ocanto', '3');
+INSERT INTO employee (first_name, last_name, id_department, id_boss)
+VALUES ('Daniela', 'Ocanto', '3', '1');
 
 -- --INSERT HOBBY
 INSERT INTO employee_hobby (name, description)
