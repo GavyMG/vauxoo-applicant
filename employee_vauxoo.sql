@@ -20,8 +20,23 @@ CREATE TABLE employee (
 	ON UPDATE CASCADE	
 );
 
---CREATE TABLE employee_hobby (
---);
+CREATE TABLE employee_hobby (
+	id serial PRIMARY KEY,
+	name varchar(50) NOT NULL,
+	description text
+);
+
+CREATE TABLE employee_employee_hobby(
+	id_employee serial NOT NULL,
+	id_hobby serial NOT NULL,
+	FOREIGN KEY (id_employee) REFERENCES employee
+	ON DELETE CASCADE
+	ON UPDATE CASCADE,
+	FOREIGN KEY (id_hobby) REFERENCES employee_hobby
+	ON DELETE CASCADE
+	ON UPDATE CASCADE,
+	PRIMARY KEY (id_employee, id_hobby)
+);
 
 -- ...
 -- --INSERT departements
@@ -57,3 +72,35 @@ VALUES ('Miriam', 'Gamez', '6');
 
 INSERT INTO employee (first_name, last_name, id_department)
 VALUES ('Daniela', 'Ocanto', '3');
+
+-- --INSERT HOBBY
+INSERT INTO employee_hobby (name, description)
+VALUES ('Reading', 'Reading is a means of language acquisition, communication, and of sharing information and ideas.');
+
+INSERT INTO employee_hobby (name, description)
+VALUES ('Video gaming', 'The playing of video games.');
+
+INSERT INTO employee_hobby (name, description)
+VALUES ('Running', 'Running is a method of terrestrial locomotion allowing humans and other animals to move rapidly on foot.');
+
+
+--INSERT employee_hobby
+INSERT INTO employee_employee_hobby (id_employee, id_hobby)
+VALUES ('1','1');
+INSERT INTO employee_employee_hobby (id_employee, id_hobby)
+VALUES ('1','2');
+
+INSERT INTO employee_employee_hobby (id_employee, id_hobby)
+VALUES ('2','1');
+INSERT INTO employee_employee_hobby (id_employee, id_hobby)
+VALUES ('2','3');
+
+INSERT INTO employee_employee_hobby (id_employee, id_hobby)
+VALUES ('3','2');
+INSERT INTO employee_employee_hobby (id_employee, id_hobby)
+VALUES ('3','1');
+
+INSERT INTO employee_employee_hobby (id_employee, id_hobby)
+VALUES ('4','2');
+INSERT INTO employee_employee_hobby (id_employee, id_hobby)
+VALUES ('4','3');
